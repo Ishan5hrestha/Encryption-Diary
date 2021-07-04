@@ -26,6 +26,7 @@ def prBlack(skk): print("\033[98m {}\033[00m" .format(skk))
 def clear(): os.system('cls')
 
 def checkphrase(pkey,key):
+	#line 178,172 and this for first run
 	g = open(phrase,"r",encoding="utf-8")
 	read = g.read()
 	if encrypt(pkey,key)==read:return 1
@@ -49,6 +50,14 @@ def typewriter(x,time):
 		sleep(time)
 		sys.stdout.write(char)
 		sys.stdout.flush()
+
+def colour(x):
+	lines = x.split("\n")
+	for i in range(len(lines)):
+		if i == 0: prRed(lines[i])
+		elif i == 1: prYellow(lines[i])
+		elif i == 2: prYellow(lines[i])
+		else: print(lines[i])
 
 def hasher(key):
 	try:
@@ -80,21 +89,32 @@ def make(pkey):
 		for filename in glob.glob("*.txt"):
 			with open(os.path.join(os.getcwd(), filename), 'r') as f: # open in readonly mode
 				content = f.read()
+				rfname = ""
+				for i in content:
+					if i!="\n":rfname += i
+					else: break
+				rfname = rfname.replace("/","-")
 				x = encrypt(pkey,content)
-				filename = filename.replace(".txt","")
-				g = open(filename+extension,"w",encoding="utf-8")
+				g = open(rfname+extension,"w",encoding="utf-8")
 				g.write(x)
 				g.close()
 				try:
-					f.close()
-					filename = filename+".txt"
+					f.close()	#need to close file to delete
 					os.remove(filename)
 					done = 1
 				except OSError as e:
-					prRed("Error! Couldn't Shred: ",e)
+					print(filename,rfname)
+					prRed("Error! Couldn't Shred: ")
+					m.getch()
 					return -1
-		if done==1: prGreen("Make successful!!!")
-		else: prYellow("Nothing to Make")
+		if done==1: 
+			prGreen("Make successful!!!")
+			m.getch()
+		else: 
+			prYellow("Nothing to Make")
+			m.getch()
+	else:
+		prRed("Wrong Password")
 		m.getch()
 
 def view(pkey):
@@ -106,6 +126,7 @@ def view(pkey):
 		print((str(i)+". Back").center(5,' '))
 		for filename in glob.glob("*"+extension):
 			i += 1
+			#filename = filename.replace(extension,"")
 			print((str(i)+". "+filename).center(5,' '))
 			files.append(filename)
 
@@ -123,7 +144,7 @@ def view(pkey):
 		clear()
 		print(filename)
 
-		typewriter(x,0.005)
+		colour(x)
 
 		m.getch()
 
@@ -139,7 +160,7 @@ def keychange(pkey):
 		nkey1 = input("Enter New Key: ")
 		nkey2 = input("Reenter the Key: ")
 		nphrase = input("Enter a Checkphrase: ")
-		if nkey1!=nkey2: return 0
+		if nkey1!=nkey2: return -1
 		try:
 			for filename in glob.glob("*"+extension):
 				with open(os.path.join(os.getcwd(), filename), 'r',encoding="utf-8") as f: # open in readonly mode
@@ -153,17 +174,19 @@ def keychange(pkey):
 					m.getch()
 			#making new check phrase
 			g = open(phrase,"w",encoding="utf-8")
-			g.write(encrypt(nkey1,nphrase))
+			g.write(encrypt(pkey,nphrase))	#comment on first run
+			#g.write(nphrase)	#comment on other runs
 			g.close()
 			#changing settings file
 			for filename in glob.glob("*"+setting):
 				with open(os.path.join(os.getcwd(), filename), 'r',encoding="utf-8") as f: # open in readonly mode
 					content = f.read()
 					f.close()
-					x = encrypt(pkey,content,-1)
-					print(x)
+					#x = content	#comment on later runs
+					x = encrypt(pkey,content,-1)	#comment when first run#
+					print("Decrypted",x)
 					x = encrypt(nkey1,x)
-					print(x)
+					print("Encrypted",x)
 					g = open(filename,"w",encoding="utf-8")
 					g.write(x)
 					g.close()
