@@ -6,13 +6,20 @@
 - View the files
 
 
+By default:  
+- KEY: hahahaa  
+- CheckPhrase: ofcourse  
+
+## Working
+The main KEY made during installation is turned into hash of numeric digits. These digits are added to each letter in a looping manner.  
+For example:  
+If hashed value = 1023  
+Our text = apple  
+Our hashed text would be : (a+1)(p+0)(p+2)(l+3)(e+1) = bprof  
 Uses two passwords:  
 - KEY for hashing
 - CheckPhrase for confirmation
 
-
-KEY: hahahaa  
-CheckPhrase: ofcourse  
 
 Add any .txt file on the root directory and run the code.  
 Enter main key then select make to encrypt.  
