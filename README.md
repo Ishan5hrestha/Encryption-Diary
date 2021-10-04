@@ -1,15 +1,18 @@
-# Encryption-Diary
-Hash based encryption.  
-Run Installer.py first inside Install folder  
-Copy All the files it produces to base folder  
-Run Diarist.py and use the key you created in installation  
-View the files  
-Uses two passwords:  
-1. KEY for hashing  
-2. CheckPhrase for confirmation  
+# Hash based Encryption Diary
+## Installation
+- Run Installer.py first inside Install folder
+- Copy All the files it produces to base folder
+- Run Diarist.py and use the key you created in installation
+- View the files
 
-Main Key: hahahaa  
-confirmation phrase: ofcourse  
+
+Uses two passwords:  
+- KEY for hashing
+- CheckPhrase for confirmation
+
+
+KEY: hahahaa  
+CheckPhrase: ofcourse  
 
 Add any .txt file on the root directory and run the code.  
 Enter main key then select make to encrypt.  
