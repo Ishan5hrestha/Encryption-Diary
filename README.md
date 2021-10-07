@@ -27,4 +27,5 @@ Select View to decrypt
 
 This deletes the main txt file and makes new .dovah file  
 
-.set files are for its settings.
+.set files are for its settings.  
+Watch video [here](https://www.youtube.com/watch?v=7FrJ9ksalcA)
