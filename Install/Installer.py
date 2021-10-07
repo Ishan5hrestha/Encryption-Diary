@@ -11,6 +11,7 @@ icfile = "key_check.set"
 setting = ".set"
 extension = ".dovah"
 pkey = "hahahaa"
+ckey = "ofcourse"
 
 def clear(): os.system('cls')
 
@@ -53,7 +54,7 @@ def main():
 	f=open("ipc.set","r",encoding="utf-8")
 	g=open(phrase,"w",encoding="utf-8")
 	pic = f.read()
-	pic = encrypt(key, pic)
+	pic = encrypt(key, ckey)
 	g.write(pic)
 	f.close()
 	g.close()

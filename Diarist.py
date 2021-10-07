@@ -56,7 +56,6 @@ def colour(x):
 	for i in range(len(lines)):
 		if i == 0: prRed(lines[i])
 		elif i == 1: prYellow(lines[i])
-		elif i == 2: prYellow(lines[i])
 		else: print(lines[i])
 
 def hasher(key):
@@ -142,8 +141,6 @@ def view(pkey):
 			return 0 
 
 		clear()
-		print(filename)
-
 		colour(x)
 
 		m.getch()
